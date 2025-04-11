@@ -43,9 +43,6 @@ public class Celular extends Producto implements Precio{
         System.out.println("la bateria del celular es de"+capacidad_bateria);
     }
 
-    @Override
-    public double Calcular_precio(int cantidad) {
-        return Precio.super.Calcular_precio(cantidad);
-    }
+
 
 }

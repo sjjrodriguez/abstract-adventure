@@ -1,4 +1,4 @@
-abstract class Producto {
+abstract class Producto implements Precio{
     protected String nombre;
     protected String marca;
     protected double precio;
@@ -56,6 +56,14 @@ abstract class Producto {
                 ", cantidadStack=" + cantidadStack +
                 '}';
     }
+    public double Calcular_precio(int cantidad) {
+        return Precio.super.Calcular_precio(cantidad);
+    }
+    public void reducirStock(int cantidad) {
+        this.cantidadStack -= cantidad;
+    }
+
 
     public abstract void  mostrar_info();
+
 }

@@ -41,8 +41,5 @@ public  class laptop extends Producto implements Precio {
         System.out.println("la memoria RAM de la laptop es: "+memoriaRAM);
     }
 
-    @Override
-    public double Calcular_precio(int cantidad) {
-        return Precio.super.Calcular_precio(cantidad);
-    }
+
 }

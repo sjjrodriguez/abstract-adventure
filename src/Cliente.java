@@ -1,47 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Cliente {
     private String nombre;
     private String correo;
-    private List<Compra> compras;
+    private List<String> historialCompras = new ArrayList<>();
 
     public Cliente(String nombre, String correo) {
         this.nombre = nombre;
         this.correo = correo;
-        this.compras = new ArrayList<>();
     }
 
-    // Clase interna para registrar una compra
-    private class Compra {
-        Precio producto; // Puede ser Producto también si prefieres
-        int cantidad;
-
-        public Compra(Precio producto, int cantidad) {
-            this.producto = producto;
-            this.cantidad = cantidad;
-        }
-
-        public double calcularCosto() {
-            return producto.Calcular_precio(cantidad);
-        }
+    public String getNombre() {
+        return nombre;
     }
 
-    public void comprarProducto(Precio producto, int cantidad) {
-        Compra nuevaCompra = new Compra(producto, cantidad);
-        compras.add(nuevaCompra);
+    public void comprarProducto(Producto producto, int cantidad) {
+        double costo = producto.Calcular_precio(cantidad);
+        producto.reducirStock(cantidad);
+        historialCompras.add(producto.getNombre() + " x" + cantidad + " - Total: $" + costo);
+        System.out.println("\n--- FACTURA ---");
+        System.out.println("Cliente: " + nombre);
+        System.out.println("Producto: " + producto.getNombre());
+        System.out.println("Cantidad: " + cantidad);
+        System.out.println("Total: $" + costo);
+        System.out.println("------------------------");
     }
 
     public void mostrarCompra() {
-        double total = 0;
-        for (Compra compra : compras) {
-            System.out.println("Producto: " + compra.producto);
-            System.out.println("Cantidad: " + compra.cantidad);
-            double costo = compra.calcularCosto();
-            System.out.println("Costo: $" + costo);
-            total += costo;
-            System.out.println("-------------------------");
+
+            for (String compra : historialCompras) {
+                System.out.println(compra);
+            }
         }
-        System.out.println("Total gastado: $" + total);
     }
-}
+
+
+
